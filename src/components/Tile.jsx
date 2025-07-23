@@ -2,7 +2,7 @@
 import React from "react";
 
 // Map piece types + color to image filenames in /public/assets/
-// For example: w_pawn.png, b_king.png etc.
+// For example: wP.png, bK.png etc.
 const pieceImages = {
   pw: "/assets/wP.png",
   nw: "/assets/wK.png",
@@ -29,12 +29,13 @@ const Tile = ({ piece, color, isLightSquare, isSelected, onClick, disabled }) =>
     <div
       onClick={disabled ? undefined : onClick}
       className={`${bgClass} ${selectedClass} w-full h-full flex justify-center items-center cursor-pointer`}
+      style={{ width: "100%", height: "100%" }}
     >
       {pieceSrc && (
         <img
           src={pieceSrc}
           alt={`${color === "w" ? "White" : "Black"} ${piece}`}
-          className="w-10 h-10"
+          className="w-4/5 h-4/5 object-contain"
           draggable={false}
         />
       )}

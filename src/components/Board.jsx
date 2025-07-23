@@ -108,7 +108,7 @@ const handleTileClick = (rank, file) => {
     <div className="flex flex-col items-center gap-4">
       <h2 className="text-white text-xl font-semibold">{status}</h2>
 
-      <div className="w-[min(90vw,600px)] h-[min(90vw,600px)] grid grid-cols-8 border border-gray-700">
+      <div className="w-[min(90vw,550px)] aspect-square grid grid-cols-8 grid-rows-8 border border-gray-700">
         {board.flat().map((square, idx) => {
           const piece = square ? square.type : null;
           const color = square ? square.color : null;
