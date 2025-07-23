@@ -19,7 +19,7 @@ const pieceImages = {
   kb: "/assets/bK.png",
 };
 
-const Tile = ({ piece, color, isLightSquare, isSelected, onClick }) => {
+const Tile = ({ piece, color, isLightSquare, isSelected, onClick, disabled }) => {
   const bgClass = isLightSquare ? "bg-gray-200" : "bg-gray-700";
   const selectedClass = isSelected ? "ring-4 ring-yellow-400" : "";
   const pieceKey = piece && color ? piece + color : null;
@@ -27,7 +27,7 @@ const Tile = ({ piece, color, isLightSquare, isSelected, onClick }) => {
 
   return (
     <div
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
       className={`${bgClass} ${selectedClass} w-full h-full flex justify-center items-center cursor-pointer`}
     >
       {pieceSrc && (
