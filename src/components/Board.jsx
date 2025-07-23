@@ -4,20 +4,19 @@ import { Chess } from "chess.js";
 import Tile from "./Tile";
 
 const Board = () => {
-  const game = useRef(new Chess()); // persistent Chess instance
+  const game = useRef(new Chess());
   const [board, setBoard] = useState([]);
-  const [selectedSquare, setSelectedSquare] = useState(null); // Track selected piece
+  const [selectedSquare, setSelectedSquare] = useState(null);
 
-  // Load board layout from chess.js
   const updateBoard = () => {
     setBoard(game.current.board());
   };
 
   useEffect(() => {
-    updateBoard(); // initial load
+    updateBoard();
   }, []);
 
-  // Convert rank/file to square notation like "e2"
+  // Convert rank/file to "e2", "d4", etc.
   const coordsToSquare = ({ rank, file }) => {
     const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
     return files[file] + (rank + 1);
@@ -34,16 +33,34 @@ const Board = () => {
       });
 
       if (move) {
-        updateBoard(); // Refresh board after move
+        updateBoard();
+        setSelectedSquare(null);
+
+        // Let AI move after short delay
+        setTimeout(() => {
+          makeAIMove();
+        }, 500);
+        return;
       }
 
-      setSelectedSquare(null); // Reset selection
+      setSelectedSquare(null); // Reset even if move failed
     } else {
       const piece = game.current.get(square);
       if (piece && piece.color === game.current.turn()) {
         setSelectedSquare(square);
       }
     }
+  };
+
+  // Simple AI: play a random legal move
+  const makeAIMove = () => {
+    if (game.current.isGameOver()) return;
+
+    const moves = game.current.moves();
+    const randomMove = moves[Math.floor(Math.random() * moves.length)];
+
+    game.current.move(randomMove);
+    updateBoard();
   };
 
   return (
