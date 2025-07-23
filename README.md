@@ -1,9 +1,12 @@
+# CHESS AI PROJECT
 
 ---
 
 ## ✅ PROJECT PLAN (Step-by-Step Checklist)
 
 ## PROJECT STRUCTURE
+
+```text
 /chess-ai
 ├── public/
 │   └── assets/          ← All chess piece images
@@ -20,7 +23,7 @@
 │   └── index.css         ← Tailwind + custom styles
 ├── package.json
 └── vite.config.js
-
+---
 
 ### 📁 **PHASE 1: Setup & Board Rendering**
 
